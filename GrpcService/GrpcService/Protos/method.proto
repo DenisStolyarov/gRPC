@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.Data";
+
+package data;
+
+message UnaryRequest {
+    string data = 1;
+}
+
+message UnaryResponse {
+    string data = 1;
+}
+
+message ClientStreamingRequest {
+    int32 count = 1;
+    string data = 2;
+}
+
+message ServerStreamingResponse {
+    int32 count = 1;
+    string data = 2;
+}

@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.Data";
+
+package data;
+
+// Time
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+// Nullable
+import "google/protobuf/wrappers.proto";
+
+// Any
+import "google/protobuf/any.proto";
+
+// Value
+import "google/protobuf/struct.proto";
+
+message Data {
+    reserved 10, 15 to 20;
+    reserved "obsolete";
+
+    int32 int_value = 1;
+    int64 long_value = 2;
+    float float_value = 3;
+    double double_value = 4;
+    bool bool_value = 5;
+    string string_value = 6;
+    bytes bytes_value = 7;
+
+    google.protobuf.Timestamp time = 8;
+    google.protobuf.Duration duration = 9;
+}
+
+message NullData {
+    google.protobuf.Int32Value int_value = 1;
+    google.protobuf.Int64Value long_value = 2;
+    google.protobuf.FloatValue float_value = 3;
+    google.protobuf.DoubleValue double_value = 4;
+    google.protobuf.BoolValue bool_value = 5;
+    google.protobuf.StringValue string_value = 6;
+    google.protobuf.BytesValue bytes_value = 7;
+}
+
+message CollectionData {
+    repeated int32 list_value = 1;
+    map<int32, int32> key_to_value = 2;
+}
+
+message AnyData {
+    google.protobuf.Any data = 1;
+}
+
+enum Status {
+    UNKNOWN = 0;
+    SUCCESS = 1;
+    ERROR = 2;
+}
+
+message OneOfData {
+    message Success {
+        Status status = 1;
+    }
+
+    message Error {
+        Status status = 1;
+    }
+
+    oneof Status {
+        Error error = 1;
+        Success success = 2;
+    }
+}
+
+message ValueData {
+    google.protobuf.Value data = 1;
+}

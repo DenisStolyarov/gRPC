@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.Services";
+
+package services;
+
+// Custom data
+import "Protos/data.proto";
+
+// Empty message
+import "google/protobuf/empty.proto";
+
+service DataService {
+	rpc GetData (google.protobuf.Empty) returns (data.Data);
+    rpc GetNullData (google.protobuf.Empty) returns (data.NullData);
+	rpc GetCollectionData (google.protobuf.Empty) returns (data.CollectionData);
+    rpc GetAnyData (google.protobuf.Empty) returns (data.AnyData);
+    rpc GetOneOfData (google.protobuf.Empty) returns (data.OneOfData);
+    rpc GetValueData (google.protobuf.Empty) returns (data.ValueData);
+}

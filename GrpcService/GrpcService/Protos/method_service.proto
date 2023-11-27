@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.Services";
+
+package services;
+
+import "Protos/method.proto";
+
+service MethodService {
+	// Unary
+	rpc UnaryCall (data.UnaryRequest) returns (data.UnaryResponse);
+
+	// Server streaming
+	rpc StreamingFromServer (data.UnaryRequest) returns (stream data.ServerStreamingResponse);
+
+	// Client streaming
+	rpc StreamingFromClient (stream data.ClientStreamingRequest) returns (data.UnaryResponse);
+
+	// Bi-directional streaming
+	rpc StreamingBothWays (stream data.ClientStreamingRequest) returns (stream data.ServerStreamingResponse);
+}
