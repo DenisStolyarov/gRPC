@@ -63,7 +63,7 @@ public class DataService : DataServiceBase
         public static CollectionData GenerateCollectionData()
         {
             CollectionData data = new();
-            int[] values = new int[] { 1, 2, 3 };
+            int[] values = { 1, 2, 3 };
 
             data.ListValue.AddRange(values);
 
